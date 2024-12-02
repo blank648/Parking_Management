@@ -3,63 +3,11 @@
 #include <iomanip>
 #include <conio.h>
 #include <ctime>
-#include <vector>
 #include <exception>
 
-class earnings {
-private:
-    //facem categori de incasari bazate pe categoria vehiculului
-    int A; //bike
-    int B; //car
-    int C; //small truck / small bus
-    int D; //large truck / bus
-    int total;
-
-public:
-    //facem constructor pentru initializarea variabilelor A,B,C,D
-    earnings() {
-        this->A = 0;
-        this->B = 0;
-        this->C = 0;
-        this->D = 0;
-        this->total = 0;
-    }
-
-    //copy constructor
-    earnings(const earnings &other) {
-        this->A = other.A;
-        this->B = other.B;
-        this->C = other.C;
-        this->D = other.D;
-        this->total = other.total;
-    }
-
-    //entering the data
-    void input(int A, int B, int C, int D, int total) {
-        this->A = A;
-        this->B = B;
-        this->C = C;
-        this->D = D;
-        this->total = total;
-    }
-
-    //afisam variabilele si folosimm setw() pt a seta latimea campurilor
-    virtual void display() {
-        std::cout << "\n--------------------------------------------------------------------------------------------\n";
-        std::cout << std::setw(10) << "Category A:" << std::setw(10) << "Category B:" << std::setw(10) << "Category C:"
-                << std::setw(10) << "Catagory D:";
-        std::cout << "\n--------------------------------------------------------------------------------------------\n";
-        std::cout << std::setw(9) << this->A << ' ' << std::setw(9) << this->B << ' ' << std::setw(9) << this->C << ' '
-                << std::setw(9) << this->D << std::endl;
-    }
-
-    virtual ~earnings() {
-    }
-
-    void get_money();
-
-    friend void add_money(earnings, earnings &);
-};
+#include "earnings.h"
+#include "levels.h"
+#include "vehicle.h"
 
 void earnings::get_money() {
     std::ifstream f;
@@ -78,139 +26,6 @@ void add_money(earnings before, earnings &after) {
     after.D += before.D;
     after.total += before.total;
 }
-
-class vehicle_type {
-private:
-    std::string vehicle_type_name;
-
-public:
-    vehicle_type() : vehicle_type_name("vehicle") {
-    }
-
-    //copy constructor
-    vehicle_type(const vehicle_type &other) {
-        this->vehicle_type_name = other.vehicle_type_name;
-    }
-
-    //select vehicle type
-    void set_vehicle_type(earnings &Earnings) {
-        while (1) {
-            std::cout << "Select vehicle category: " << std::endl;
-            std::cout << "1.A" << ' ' << "2.B" << ' ' << "3.C" << ' ' << "4.D" << std::endl;
-            int vehicle_type;
-            std::cin >> vehicle_type;
-            if (vehicle_type == 1) {
-                vehicle_type_name = "A";
-                Earnings.input(20, 0, 0, 0, 20);
-                break;
-            } else if (vehicle_type == 2) {
-                vehicle_type_name = "B";
-                Earnings.input(0, 20, 0, 0, 20);
-                break;
-            } else if (vehicle_type == 3) {
-                vehicle_type_name = "C";
-                Earnings.input(0, 0, 60, 0, 60);
-                break;
-            } else if (vehicle_type == 4) {
-                vehicle_type_name = "D";
-                Earnings.input(0, 0, 0, 100, 100);
-                break;
-            } else {
-                //invalid data
-                std::cout << "Error" << std::endl;
-            }
-        }
-    }
-
-    virtual void display() {
-        std::cout << vehicle_type_name << ' ' << std::endl;
-    }
-
-    virtual ~vehicle_type() {
-    }
-};
-
-class vehicle : public vehicle_type {
-private:
-    int vno; //vehicle database number
-    std::string registration_num;
-    std::string color;
-    std::string manufacturer;
-    std::string model;
-    std::string entrance_hour;
-    std::string exit_hour;
-    earnings Earnings;
-
-public:
-    //constructor implicit
-    vehicle() {
-        this->vno = 0;
-        registration_num = "default";
-        color = "default";
-        manufacturer = "default";
-        model = "default";
-        time_t tt;
-        time(&tt);
-        entrance_hour = asctime(localtime(&tt));
-        exit_hour = asctime(localtime(&tt));
-    }
-
-    //constructor de copiere
-    vehicle(const vehicle &other) {
-        this->vno = other.vno;
-        this->registration_num = other.registration_num;
-        this->color = other.color;
-        this->manufacturer = other.manufacturer;
-        this->model = other.model;
-        this->entrance_hour = other.entrance_hour;
-        this->exit_hour = other.exit_hour;
-        this->Earnings = other.Earnings;
-    }
-
-    //enter vehicle data
-    void read() {
-        std::cout << "Enter vehicle number: " << std::endl;
-        std::cin >> vno;
-        std::cout << "Enter vehicle registration number: " << std::endl;
-        std::cin >> registration_num;
-        std::cout << "Enter vehicle color: " << std::endl;
-        std::cin >> color;
-        std::cout << "Enter manufacturer: " << std::endl;
-        std::cin >> manufacturer;
-        std::cout << "Enter model: " << std::endl;
-        std::cin >> model;
-        set_vehicle_type(Earnings);
-        time_t tt;
-        time(&tt);
-        entrance_hour = asctime(localtime(&tt));
-        exit_hour = asctime(localtime(&tt));
-    }
-
-    //display function
-    void display() const {
-        std::cout << "Vehicle number: " << vno << std::endl;
-        std::cout << "Registration number: " << registration_num << std::endl;
-        std::cout << entrance_hour << " - " << exit_hour << std::endl;
-    }
-
-    void show_vehicle() {
-        std::cout << vno << ' ' << manufacturer << ' ' << color << std::endl;
-        Earnings.display();
-    }
-
-    int get_vehicle_number() {
-        return vno;
-    }
-
-    void add_vehicle();
-
-    void add_in_list();
-
-    void search_vehicle(int nr); //nr-veh. no
-    void delete_vehicle(int nr);
-
-    void update(int nr); //updating vehicle
-};
 
 //deschidem fisierul in mod binar
 
@@ -343,61 +158,6 @@ void vehicle::update(int nr) {
     }
 }
 
-//managing vehicles though organised levels
-class levels : public vehicle {
-private:
-    std::vector<vehicle> level[6];
-
-public:
-    levels() {
-    }
-
-    //adding vehicle to a certain level
-    void add_to_level(int lvl, const vehicle &v) {
-        if (lvl == 1 && lvl <= 4) {
-            level[lvl - 1].push_back(v);
-            std::cout << "The vehicle has been added to level " << lvl << "\n";
-        } else {
-            std::cout << "Invalid choice \n";
-        }
-    }
-
-    //removing the vehicles
-    void remove_from_level(int lvl, int vno) {
-        if(lvl<1 || lvl>4) {
-            throw std::invalid_argument("Invalid choice for the vehicle level");
-        }
-        if (lvl == 1 && lvl <= 4) {
-            auto &vehicles = level[lvl - 1];
-            bool found = false;
-            for (auto it = vehicles.begin(); it != vehicles.end(); it++) {
-                if (it->get_vehicle_number() == vno) {
-                    vehicles.erase(it);
-                    found = true;
-                    std::cout << "The vehicle has been removed from level " << lvl << "\n";
-                    break;
-                }
-            }
-            if (!found) {
-                std::cout << "The vehicle has not been found";
-            }
-        } else {
-            throw std::runtime_error("Invalid choice for the vehicle level");
-        }
-    }
-
-    void show_all_vehicles() {
-        for (int i = 0; i <= 4; i++) {
-            std::cout << "\n Level " << i++ << " vehicles: \n";
-            for (const auto &v: level[i]) {
-                v.display();
-            }
-        }
-    }
-
-};
-
-
 int menu() {
     int op;
     printf("1. Add vehicle\n");
@@ -485,5 +245,7 @@ int main() {
 
 /*
  *de schimbat:  char* to string
- *
+ *dynamic si static cast
+ *functie pur virtuala (este virtuala)
+ *upcasting
 */

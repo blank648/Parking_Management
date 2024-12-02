@@ -45,6 +45,16 @@ include(cmake/Options.cmake)
 add_executable(${PROJECT_NAME}
     main.cpp
     generated/src/Helper.cpp
+        levels.cpp
+        levels.h
+        vehicle.cpp
+        vehicle.h
+        vehicle_type.cpp
+        vehicle_type.h
+        earnings.cpp
+        earnings.h
+        bicicleta.cpp
+        bicicleta.h
 )
 
 include(cmake/CompilerFlags.cmake)
