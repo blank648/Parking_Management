@@ -158,6 +158,8 @@ void vehicle::update(int nr) {
     }
 }
 
+
+
 int menu() {
     int op;
     printf("1. Add vehicle\n");
@@ -176,7 +178,7 @@ int main() {
     system("cls");
     vehicle v;
     earnings Earnings;
-    levels Levels;
+    levels<vehicle> Levels(4, vehicle());
     int brk_loop = 0, nr;
     while (1) {
         system("cls");
@@ -202,7 +204,7 @@ int main() {
                     std::cin >> level_choice1;
                     std::cout << "Enter vehicle number to delete: ";
                     std::cin >> nr;
-                    Levels.remove_from_level(level_choice1, nr);
+                    //Levels.remove_from_level(level_choice1, v);//possible problem
                     v.delete_vehicle(nr);
                 }catch (const std::exception &e) {
                     std::cout << "Error" << e.what();
@@ -244,8 +246,8 @@ int main() {
 }
 
 /*
- *de schimbat:  char* to string
- *dynamic si static cast
- *functie pur virtuala (este virtuala)
- *upcasting
+ *static cast
+ *template funtion
+ *2 design patterns
+ *
 */

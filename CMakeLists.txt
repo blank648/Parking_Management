@@ -55,6 +55,16 @@ add_executable(${PROJECT_NAME}
         earnings.h
         bicicleta.cpp
         bicicleta.h
+        VehicleFactory.cpp
+        VehicleFactory.h
+        car.cpp
+        car.h
+        truck.cpp
+        truck.h
+        bike.cpp
+        bike.h
+        Command.cpp
+        Command.h
 )
 
 include(cmake/CompilerFlags.cmake)

@@ -53,7 +53,7 @@ public:
     }
 
     //enter vehicle data
-    void read() {
+    virtual void read() {
         std::cout << "Enter vehicle number: " << std::endl;
         std::cin >> vno;
         std::cout << "Enter vehicle registration number: " << std::endl;
@@ -72,7 +72,7 @@ public:
     }
 
     //display function
-    void display() const {
+    virtual void display() const {
         std::cout << "Vehicle number: " << vno << std::endl;
         std::cout << "Registration number: " << registration_num << std::endl;
         std::cout << entrance_hour << " - " << exit_hour << std::endl;
@@ -86,6 +86,8 @@ public:
     int get_vehicle_number() {
         return vno;
     }
+
+    virtual ~vehicle() {}
 
     void add_vehicle();
 
