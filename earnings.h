@@ -46,6 +46,26 @@ public:
         this->total = total;
     }
 
+    [[nodiscard]] int a() const {
+        return A;
+    }
+
+    [[nodiscard]] int b() const {
+        return B;
+    }
+
+    [[nodiscard]] int c() const {
+        return C;
+    }
+
+    [[nodiscard]] int d() const {
+        return D;
+    }
+
+    [[nodiscard]] int total1() const {
+        return total;
+    }
+
     //afisam variabilele si folosimm setw() pt a seta latimea campurilor
     virtual void display() {
         std::cout << "\n--------------------------------------------------------------------------------------------\n";
@@ -56,12 +76,12 @@ public:
                 << std::setw(9) << this->D << std::endl;
     }
 
-    virtual ~earnings() {
-    }
+    virtual ~earnings() = default;
+
 
     void get_money();
 
-    friend void add_money(earnings, earnings &);
+    friend void add_money(const earnings& before, earnings& after);
 };
 
 

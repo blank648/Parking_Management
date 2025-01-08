@@ -5,11 +5,11 @@
 #ifndef TRUCK_H
 #define TRUCK_H
 #include "vehicle.h"
-// parte din dynamic cast
 
+// part of dynamic cast
 class truck : public vehicle {
 public:
-    void display() override {
+    void display() const override {
         std::cout << "Truck details:\n";
         vehicle::display();
     }

@@ -16,7 +16,7 @@
 template <typename T>
 class levels {
 private:
-    std::vector<std::vector<T>> level;;
+    std::vector<std::vector<T>> level;
     T dependant_atribute;
 public:
     levels(int nr_Levels, T initial_weight)
@@ -52,20 +52,23 @@ public:
         }
     }*/
 
+    void show_all_vehicles() const;
+
     void show_all_levels() const {
         for (size_t i = 0; i < level.size(); ++i) {
             std::cout << "Level " << i + 1 << ":\n";
             for (const auto& item : level[i]) {
-                std::cout << item << "\n";  // Presupune că T are operatorul << supraîncărcat
+                std::cout << item << "\n";
             }
         }
     }
 
+    //we allow frienf functions to access levels
     template <typename U>
     friend void display_level_info(const levels<U>& lvl);
 
 };
-
+#include "levels.cpp"
 
 
 #endif //LEVELS_H

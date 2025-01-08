@@ -9,7 +9,7 @@
 
 class bike : public vehicle {
 public:
-    void display() override {
+    void display() const override {
         std::cout << "Bike details:\n";
         vehicle::display();
     }

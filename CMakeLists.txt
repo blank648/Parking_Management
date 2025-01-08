@@ -65,6 +65,8 @@ add_executable(${PROJECT_NAME}
         bike.h
         Command.cpp
         Command.h
+        Observer.cpp
+        Observer.h
 )
 
 include(cmake/CompilerFlags.cmake)

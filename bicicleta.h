@@ -15,16 +15,13 @@ private:
     std::string name = "Bycicle";
 
 public:
-    bicicleta() {
-
-    }
+    bicicleta() = default;
 
     void display() override {
         std::cout << "This is a " << get_vehicle_type_name() << std::endl;
     }
 
-    ~bicicleta() {
-    }
+    ~bicicleta() override = default;
 };
 
 

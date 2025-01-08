@@ -19,15 +19,16 @@ void earnings::get_money() {
     }
 }
 
-void add_money(earnings before, earnings &after) {
-    after.A += before.A;
-    after.B += before.B;
-    after.C += before.C;
-    after.D += before.D;
-    after.total += before.total;
+void add_money(const earnings& before, earnings& after) {
+    // Folosim getterii pentru a obține valorile și pentru a le aduna
+    after.A += before.a();
+    after.B += before.b();
+    after.C += before.c();
+    after.D += before.d();
+    after.total += before.total1();
 }
 
-//deschidem fisierul in mod binar
+//opening the binary file
 
 void vehicle::add_vehicle() {
     std::ofstream g;
@@ -62,7 +63,7 @@ void vehicle::add_in_list() {
         }
         f.close();
         if (n == 0) {
-            std::cout << "Vehiculo not added" << std::endl;
+            std::cout << "Vehicle not added" << std::endl;
         }
     }
 }
@@ -170,7 +171,7 @@ int menu() {
     printf("6. Check earnings\n");
     printf("7. Exit\n");
     printf("Enter your option: ");
-    scanf("%d", &op);
+    std::cin >> op;
     return op;
 }
 
@@ -180,7 +181,8 @@ int main() {
     earnings Earnings;
     levels<vehicle> Levels(4, vehicle());
     int brk_loop = 0, nr;
-    while (1) {
+    bool running = true;
+    while (running) {
         system("cls");
         switch (menu()) {
             case 1:
@@ -204,7 +206,7 @@ int main() {
                     std::cin >> level_choice1;
                     std::cout << "Enter vehicle number to delete: ";
                     std::cin >> nr;
-                    //Levels.remove_from_level(level_choice1, v);//possible problem
+                   // Levels.remove_from_level(level_choice1, v);//possible problem
                     v.delete_vehicle(nr);
                 }catch (const std::exception &e) {
                     std::cout << "Error" << e.what();

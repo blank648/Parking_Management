@@ -6,10 +6,11 @@
 #define COMMAND_H
 #include "vehicle.h"
 
-
+//we implemented a command pattern
 class Command {
 public:
     virtual void execute() = 0;
+    virtual ~Command() = default;
 };
 
 class AddVehicleCommand : public Command {

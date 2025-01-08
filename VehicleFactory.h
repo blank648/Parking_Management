@@ -20,7 +20,7 @@ public:
         } else if (type == 3) {
             return new truck();
         } else {
-            return new vehicle(); // Tip generic
+            return new vehicle();
         }
     }
 };

@@ -4,18 +4,17 @@
 
 #include "VehicleFactory.h"
 
-int main() {
+int function2() {
     int vehicleType;
     std::cout << "Select vehicle type: \n1. Bike\n2. Car\n3. Truck\n";
     std::cin >> vehicleType;
 
-    // Creează vehiculul utilizând Factory
+    //create a new vehicle using factory
     vehicle* newVehicle = VehicleFactory::createVehicle(vehicleType);
 
-    // Apelează metoda `read` a vehiculului creat (dinamic binding)
     newVehicle->read();
 
-    // Eliberează memoria
+    //free the memory
     delete newVehicle;
     return 0;
 }

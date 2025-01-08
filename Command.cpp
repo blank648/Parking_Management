@@ -4,9 +4,11 @@
 
 #include "Command.h"
 
-int main() {
+//we implement adding a new vwhicle through a Command pattern
+int function3() {
     vehicle v;
     Command* cmd = new AddVehicleCommand(&v);
     cmd->execute(); // adaug vehiculul
 
+    return 0;
 }

@@ -41,7 +41,7 @@ public:
     }
 
     //constructor de copiere
-    vehicle(const vehicle &other) {
+    vehicle(const vehicle &other) : vehicle_type(other) {
         this->vno = other.vno;
         this->registration_num = other.registration_num;
         this->color = other.color;
@@ -83,11 +83,12 @@ public:
         Earnings.display();
     }
 
-    int get_vehicle_number() {
+    [[nodiscard]] int get_vehicle_number() const {
         return vno;
     }
 
-    virtual ~vehicle() {}
+
+    virtual ~vehicle() = default;
 
     void add_vehicle();
 

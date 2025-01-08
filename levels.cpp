@@ -2,7 +2,7 @@
 // Created by user on 12/2/2024.
 //
 
-
+/*
 #include "levels.h"
 
 //we create a frient template function
@@ -15,9 +15,9 @@ void display_level_info(const levels<U>& lvl) {
     std::cout << "Dependent attribute value: " << lvl.dependant_atribute << "\n";
 }
 
-int main() {
+int func() {
     try {
-        // Instanțiem levels pentru vehicule (sau alt tip)
+
         // 3 levels, initial value = 0
         levels<int> intLevels(3, 0);
 
@@ -41,3 +41,4 @@ int main() {
 
 
 }
+*/

@@ -4,14 +4,14 @@
 
 #ifndef CAR_H
 #define CAR_H
-// parte din dynamic cast
 
+// part of dynamic cast
 #include <iostream>
 #include "vehicle.h"
 
 class car : public vehicle {
 public:
-    void display() override {
+    void display() const override {
         std::cout << "Car details:\n";
         vehicle::display();
     }

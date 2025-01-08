@@ -61,8 +61,7 @@ public:
         std::cout << vehicle_type_name << ' ' << std::endl;
     }
 
-    virtual ~vehicle_type() {
-    }
+    virtual ~vehicle_type() = default;
 
 
 };
