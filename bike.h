@@ -5,7 +5,7 @@
 #ifndef BIKE_H
 #define BIKE_H
 #include "vehicle.h"
-// parte din dynamic cast
+// part of dynamic cast
 
 class bike : public vehicle {
 public:

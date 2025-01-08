@@ -9,6 +9,7 @@
 #include <iostream>
 #include "vehicle.h"
 
+//part of dynamic cast
 class car : public vehicle {
 public:
     void display() const override {

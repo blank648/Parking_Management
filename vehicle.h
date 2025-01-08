@@ -40,7 +40,7 @@ public:
         exit_hour = asctime(localtime(&tt));
     }
 
-    //constructor de copiere
+    //copy constructor
     vehicle(const vehicle &other) : vehicle_type(other) {
         this->vno = other.vno;
         this->registration_num = other.registration_num;
@@ -50,6 +50,14 @@ public:
         this->entrance_hour = other.entrance_hour;
         this->exit_hour = other.exit_hour;
         this->Earnings = other.Earnings;
+    }
+
+    bool operator==(const vehicle& other) const {
+        return this->vno == other.vno && this->registration_num == other.registration_num;
+    }
+
+    [[nodiscard]] virtual bool compare_vehicle(const vehicle& other) const {
+        return this->get_vehicle_number() == other.get_vehicle_number();
     }
 
     //enter vehicle data
@@ -88,7 +96,7 @@ public:
     }
 
 
-    virtual ~vehicle() = default;
+    ~vehicle() override = default;
 
     void add_vehicle();
 

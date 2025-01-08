@@ -159,8 +159,6 @@ void vehicle::update(int nr) {
     }
 }
 
-
-
 int menu() {
     int op;
     printf("1. Add vehicle\n");
@@ -206,7 +204,7 @@ int main() {
                     std::cin >> level_choice1;
                     std::cout << "Enter vehicle number to delete: ";
                     std::cin >> nr;
-                   // Levels.remove_from_level(level_choice1, v);//possible problem
+                    Levels.remove_from_level(level_choice1, v);//possible problem
                     v.delete_vehicle(nr);
                 }catch (const std::exception &e) {
                     std::cout << "Error" << e.what();

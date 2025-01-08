@@ -2,18 +2,37 @@
 // Created by user on 12/2/2024.
 //
 
-/*
+
 #include "levels.h"
 
 //we create a frient template function
-template <typename U>
-void display_level_info(const levels<U>& lvl) {
-    std::cout << "Displaying information for all levels:\n";
-    for (size_t i = 0; i < lvl.level.size(); ++i) {
-        std::cout << "Level " << i + 1 << " contains " << lvl.level[i].size() << " items.\n";
+/* failed dynamic cast attempt
+#include "car.h"
+#include "truck.h"
+#include "bike.h"
+#include <type_traits>
+
+// external function that uses dynamic_cast in order to identify vehicle type
+template <typename T>
+typename std::enable_if<std::is_base_of<vehicle, T>::value>::type
+display_vehicle_info(const T& vehicle) {
+    const vehicle* v_ptr = &vehicle;  // Pointer la clasa de bază
+
+    // Folosim dynamic_cast pentru a verifica tipul vehiculului
+    if (const car* c = dynamic_cast<const car*>(v_ptr)) {
+        std::cout << "This is a car.\n";
+        c->display();
+    } else if (const truck* t = dynamic_cast<const truck*>(v_ptr)) {
+        std::cout << "This is a truck.\n";
+        t->display();
+    } else if (const bike* b = dynamic_cast<const bike*>(v_ptr)) {
+        std::cout << "This is a bike.\n";
+        b->display();
+    } else {
+        std::cout << "Unknown vehicle type.\n";
+        v_ptr->display();
     }
-    std::cout << "Dependent attribute value: " << lvl.dependant_atribute << "\n";
-}
+}*/
 
 int func() {
     try {
@@ -39,6 +58,4 @@ int func() {
 
     return 0;
 
-
 }
-*/

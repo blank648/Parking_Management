@@ -29,24 +29,24 @@ public:
 
     //select vehicle type
     void set_vehicle_type(earnings &Earnings) {
-        while (1) {
+        int vehicle_type_choice;
+        while (true) {
             std::cout << "Select vehicle category: " << std::endl;
             std::cout << "1.A" << ' ' << "2.B" << ' ' << "3.C" << ' ' << "4.D" << std::endl;
-            int vehicle_type;
-            std::cin >> vehicle_type;
-            if (vehicle_type == 1) {
+            std::cin >> vehicle_type_choice;
+            if (vehicle_type_choice == 1) {
                 vehicle_type_name = "A";
                 Earnings.input(20, 0, 0, 0, 20);
                 break;
-            } else if (vehicle_type == 2) {
+            } else if (vehicle_type_choice == 2) {
                 vehicle_type_name = "B";
                 Earnings.input(0, 20, 0, 0, 20);
                 break;
-            } else if (vehicle_type == 3) {
+            } else if (vehicle_type_choice == 3) {
                 vehicle_type_name = "C";
                 Earnings.input(0, 0, 60, 0, 60);
                 break;
-            } else if (vehicle_type == 4) {
+            } else if (vehicle_type_choice == 4) {
                 vehicle_type_name = "D";
                 Earnings.input(0, 0, 0, 100, 100);
                 break;

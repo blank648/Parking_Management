@@ -5,16 +5,17 @@
 #ifndef LEVELS_H
 #define LEVELS_H
 #include <iostream>
-#include <fstream>
-#include <iomanip>
 #include <vector>
+#include <algorithm>
 
 #include "vehicle.h"
+
+
 
 //managing vehicles though organised levels
 //we modify this class in order to make it a template class
 template <typename T>
-class levels {
+class levels : public vehicle {
 private:
     std::vector<std::vector<T>> level;
     T dependant_atribute;
@@ -36,12 +37,21 @@ public:
         }
     }
 
+    //comparing 2 vehicles
+    bool compare_vehicle(const T& a, const T& b) {
+        return a.get_vehicle_number() == b.get_vehicle_number();
+    }
+
     //removing the vehicles
-/*
     void remove_from_level(int level_number, const T& item) {
         if (level_number >= 0 && level_number < level.size()) {
             auto& items = level[level_number];
-            auto it = std::find(items.begin(), items.end(), item);
+
+            // Folosim std::find_if pentru a găsi vehiculul
+            auto it = std::find_if(items.begin(), items.end(), [&item](const T& v) {
+                return item.compare_vehicle(v);  // Compară vehiculele folosind funcția compare_vehicle
+            });
+
             if (it != items.end()) {
                 items.erase(it);
             } else {
@@ -50,10 +60,9 @@ public:
         } else {
             throw std::out_of_range("Invalid level number!");
         }
-    }*/
+    }
 
-    void show_all_vehicles() const;
-
+    //showing all levels
     void show_all_levels() const {
         for (size_t i = 0; i < level.size(); ++i) {
             std::cout << "Level " << i + 1 << ":\n";
@@ -63,12 +72,21 @@ public:
         }
     }
 
-    //we allow frienf functions to access levels
+    //we allow friend functions to access levels
     template <typename U>
     friend void display_level_info(const levels<U>& lvl);
 
 };
-#include "levels.cpp"
+
+//template function defined
+template <typename U>
+void display_level_info(const levels<U>& lvl) {
+    std::cout << "Displaying information for all levels:\n";
+    for (size_t i = 0; i < lvl.level.size(); ++i) {
+        std::cout << "Level " << i + 1 << " contains " << lvl.level[i].size() << " items.\n";
+    }
+    std::cout << "Dependent attribute value: " << lvl.dependant_atribute << "\n";
+}
 
 
 #endif //LEVELS_H
