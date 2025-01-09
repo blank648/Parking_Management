@@ -11,7 +11,7 @@
 
 class earnings {
 private:
-    //facem categori de incasari bazate pe categoria vehiculului
+    //earning cathegories based on vehicle type
     int A; //bike
     int B; //car
     int C; //small truck / small bus
@@ -19,7 +19,7 @@ private:
     int total;
 
 public:
-    //facem constructor pentru initializarea variabilelor A,B,C,D
+    //constructor for A,B,C,D
     earnings() {
         this->A = 0;
         this->B = 0;
@@ -66,7 +66,7 @@ public:
         return total;
     }
 
-    //afisam variabilele si folosimm setw() pt a seta latimea campurilor
+    //show variables
     virtual void display() {
         std::cout << "\n--------------------------------------------------------------------------------------------\n";
         std::cout << std::setw(10) << "Category A:" << std::setw(10) << "Category B:" << std::setw(10) << "Category C:"

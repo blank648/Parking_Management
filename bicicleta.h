@@ -10,6 +10,7 @@
 
 #include "vehicle_type.h"
 
+//created for upcasting
 class bicicleta : public vehicle_type {
 private:
     std::string name = "Bycicle";

@@ -4,8 +4,8 @@
 Am creat un program care doreste gestionarea unei parcari.
 ## Milestone #0
 
-- [ ] Nume proiect (poate fi schimbat ulterior)
-- [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
+- [ ] Nume proiect : Parking_Management
+- [ ] Am creat un program cu scopul gestionarii unei parcari (ex: hotel, mall, cladire birouri, etc.)
 
 ## Milestone #1
 
@@ -75,14 +75,62 @@ Am creat un program care doreste gestionarea unei parcari.
 - constructorul implicit `bicicleta` nu realizeaza initializari
 - metoda `void display() override` afiseaza numele `bicicleta`
 - avem destructorul `~bicicleta()`
+-
+- [ ] clasele `bike` `car` si `truck`
+- am realizat aceste clase cu scopul implementari `dynamic_cast`
+- acestea au in compunere cate o functie de tip `display`
+-
+- [ ] 
 
 ## Milestone #3
 
 #### Cerințe
-- [ ] 2 șabloane de proiectare (design patterns)
-- [ ] o clasă șablon cu sens; minim **2 instanțieri**
-  - [ ] preferabil și o funcție șablon (template) cu sens; minim 2 instanțieri
-- [ ] tag de `git`: de exemplu `v0.3` sau `v1.0`
+- [ ] design pattern `Command`
+- este o clasă abstractă utilizată pentru a defini o interfață comună pentru comenzi
+- Metoda virtuală pură execute
+- - Semnătură: virtual `void execute() = 0;`
+- - Scop: Definește o interfață pentru executarea unei comenzi. Fiecare clasă derivată trebuie să implementeze această metodă.
+- - Este marcată cu `= 0`, ceea ce face clasa Command o clasă abstractă.
+- Metoda virtuală pură execute
+- - Semnătură: `virtual ~Command() = default;`
+- - Scop: Asigură distrugerea corectă a obiectelor derivate printr-un pointer de tip Command
+- Clasa `AddVehicleCommand`
+- - Constructorul `AddVehicleCommand`
+- - Metoda suprascrisă `execute`
+- 
+- [ ] design pattern `Observer`
+- definește interfața pentru observatori
+- Metoda virtuală pură `update`
+- - Este metoda care va fi apelată de subiect pentru a notifica observatorii despre modificările stării. Fiecare clasă derivată trebuie să implementeze această metodă.
+- - Destructor virtual `virtual ~Observer() = default;`
+- Clasa `EarningsSubject`
+- - Aceasta este clasa care implementează rolul de subiect (publisher) în design pattern-ul Observer. Subiectul menține o listă de observatori și îi notifică atunci când valoarea câștigurilor (totalEarnings) este actualizată.
+- - Membru privat `std::vector<Observer*> observers`
+- - Membru privat int `totalEarnings`
+- - Metoda `addObserver`
+- - Metoda `notifyObservers`
+- - Metoda `updateEarnings`
+- Clasa `Logger`
+- - Aceasta este o clasă derivată din Observer, care implementează funcționalitatea de înregistrare a câștigurilor actualizate.
+- - Metoda suprascrisă `update`
+-
+- [ ] design pattern `VehicleFactory`
+- Aceasta este o clasă care permite crearea dinamică a unor obiecte derivate dintr-o bază comună (`vehicle`), pe baza unui tip numeric (`type`).
+- Este utilă în scenarii unde tipul obiectului trebuie decis în timpul execuției (runtime), fără a expune detalii specifice de implementare.
+- Metoda statică `createVehicle`
+- - Returneaza un pointer dintr-o clasa derivata
+- [ ] clasa template `levels`
+- Am modificat clasa `levels` pentru a fi clasa template
+- `std::vector<std::vector<T>> level`
+- - Vector bidimensional care stochează liste de elemente de tip T organizate pe nivele.
+- - Reține elementele pentru fiecare nivel ierarhic.
+- Am conferit un atribut dependent T
+- - Scop: Reprezintă un atribut dependent de tipul T, care poate fi actualizat prin metodele clasei.
+- Functiile mentionate anterior la documentatia pentru Milestone2 au fost modificate pentru a satisface cerintele
+- In `levels.cpp` am incercat implementarea `dynamic_cast`, dar fara succes
+- In aceelasi fisier am implementat functionalitatile clasei levels
+- - [ ] tag de `git`: de exemplu `v0.3` sau `v1.0`
+- am conferit tag-urile de git corespunzatoare
 
 ## Resurse
 - https://www.youtube.com/watch?v=qbfs4Hgn_-c
